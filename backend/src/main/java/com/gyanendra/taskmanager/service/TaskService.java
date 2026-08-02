@@ -1,6 +1,6 @@
 package com.gyanendra.taskmanager.service;
 
-import org.springframework.data.domain.Page;
+import java.util.List;
 
 import com.gyanendra.taskmanager.dto.task.TaskRequestDto;
 import com.gyanendra.taskmanager.dto.task.TaskResponseDto;
@@ -12,14 +12,8 @@ public interface TaskService {
             String email
     );
 
-    Page<TaskResponseDto> getAllTasks(
-            String email,
-            int page,
-            int size,
-            String sortBy,
-            String sortDir,
-            Boolean completed,
-            String search
+    List<TaskResponseDto> getAllTasks(
+            String email
     );
 
     TaskResponseDto getTaskById(

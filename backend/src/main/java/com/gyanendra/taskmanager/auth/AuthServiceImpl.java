@@ -1,5 +1,8 @@
 package com.gyanendra.taskmanager.auth;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.gyanendra.taskmanager.dto.auth.LoginRequest;
 import com.gyanendra.taskmanager.dto.auth.LoginResponse;
 import com.gyanendra.taskmanager.dto.auth.RegisterRequest;
@@ -7,10 +10,6 @@ import com.gyanendra.taskmanager.dto.auth.RegisterResponse;
 import com.gyanendra.taskmanager.entity.User;
 import com.gyanendra.taskmanager.repository.UserRepository;
 import com.gyanendra.taskmanager.security.JwtService;
-
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
 import com.gyanendra.taskmanager.user.Role;
 
 @Service
@@ -60,17 +59,26 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse login(LoginRequest request) {
-
+        System.out.println("LOGIN EMAIL : " + request.getEmail());
         User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(
-                        () -> new RuntimeException("Invalid email or password"));
 
-        if (!passwordEncoder.matches(
-                request.getPassword(),
-                user.getPassword())) {
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-            throw new RuntimeException("Invalid email or password");
-        }
+        System.out.println("DB PASSWORD : " + user.getPassword());
+
+        System.out.println(
+
+                "MATCH : " +
+
+                        passwordEncoder.matches(
+
+                                request.getPassword(),
+
+                                user.getPassword()
+
+                        )
+
+        );
 
         String token = jwtService.generateToken(user.getEmail());
 
