@@ -13,6 +13,7 @@ import com.gyanendra.taskmanager.repository.TaskRepository;
 import com.gyanendra.taskmanager.repository.UserRepository;
 import com.gyanendra.taskmanager.service.TaskService;
 
+
 @Service
 public class TaskServiceImpl implements TaskService {
 
@@ -43,6 +44,7 @@ public class TaskServiceImpl implements TaskService {
 
 
 
+
     @Override
     public TaskResponseDto createTask(
             TaskRequestDto request,
@@ -70,6 +72,7 @@ public class TaskServiceImpl implements TaskService {
 
 
 
+
     @Override
     public List<TaskResponseDto> getAllTasks(String email) {
 
@@ -83,6 +86,7 @@ public class TaskServiceImpl implements TaskService {
                 .toList();
 
     }
+
 
 
 
@@ -108,6 +112,7 @@ public class TaskServiceImpl implements TaskService {
 
         return mapToResponse(task);
     }
+
 
 
 
@@ -176,10 +181,14 @@ public class TaskServiceImpl implements TaskService {
 
 
 
+
+
     private TaskResponseDto mapToResponse(Task task) {
+
 
         TaskResponseDto response =
                 new TaskResponseDto();
+
 
         response.setId(task.getId());
         response.setTitle(task.getTitle());

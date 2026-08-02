@@ -1,5 +1,7 @@
 package com.gyanendra.taskmanager.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,15 +24,17 @@ public class Task {
 
     private boolean completed;
 
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
-    // Default Constructor
+
     public Task() {
     }
 
-    // Parameterized Constructor
+
     public Task(Long id, String title, String description, boolean completed, User user) {
         this.id = id;
         this.title = title;
@@ -39,7 +43,6 @@ public class Task {
         this.user = user;
     }
 
-    // Getters & Setters
 
     public Long getId() {
         return id;
@@ -49,6 +52,7 @@ public class Task {
         this.id = id;
     }
 
+
     public String getTitle() {
         return title;
     }
@@ -56,6 +60,7 @@ public class Task {
     public void setTitle(String title) {
         this.title = title;
     }
+
 
     public String getDescription() {
         return description;
@@ -65,6 +70,7 @@ public class Task {
         this.description = description;
     }
 
+
     public boolean isCompleted() {
         return completed;
     }
@@ -72,6 +78,7 @@ public class Task {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+
 
     public User getUser() {
         return user;

@@ -12,20 +12,24 @@ public interface TaskService {
             String email
     );
 
+
     List<TaskResponseDto> getAllTasks(
             String email
     );
+
 
     TaskResponseDto getTaskById(
             Long id,
             String email
     );
 
+
     TaskResponseDto updateTask(
             Long id,
             TaskRequestDto request,
             String email
     );
+
 
     void deleteTask(
             Long id,

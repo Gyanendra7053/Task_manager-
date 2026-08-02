@@ -6,11 +6,10 @@ import { useNavigate } from "react-router-dom";
 function Navbar(){
 
     const { logout } = useContext(AuthContext);
-
     const navigate = useNavigate();
 
 
-    const handleLogout = ()=>{
+    const handleLogout = () => {
 
         logout();
 
@@ -21,16 +20,24 @@ function Navbar(){
 
     return (
 
-        <nav className="flex justify-between p-5 shadow">
+        <nav className="bg-gray-900 text-white px-8 py-4 flex justify-between items-center">
 
-            <h1 className="font-bold text-xl">
+
+            <h1 className="text-2xl font-bold">
                 Task Manager
             </h1>
 
 
             <button
                 onClick={handleLogout}
-                className="bg-red-500 text-white px-4 py-2 rounded"
+                className="
+                bg-red-500 
+                px-5 
+                py-2 
+                rounded-lg
+                hover:bg-red-600
+                transition
+                "
             >
                 Logout
             </button>
@@ -38,8 +45,7 @@ function Navbar(){
 
         </nav>
 
-    )
-
+    );
 }
 
 
